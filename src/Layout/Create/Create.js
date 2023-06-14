@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import Breadcrumb from "./Breadcrumb";
-import { Link, useHistory, useRouteMatch } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { createDeck } from "../../utils/api";
-import CardForm from "../Forms/CardForm";
+import DeckForm from "../Forms/DeckForm";
 
 function Create() {
     const [formData, setFormData] = useState({
@@ -23,18 +23,21 @@ function Create() {
     async function postData() {
         const data = formData;
         const deck = await createDeck(data);
-        history.push(`/decks/${deck.id}`)
+        history.push(`/decks/${deck.id}`);
     }
 
     const handleSubmit = (event) => {
         event.preventDefault();
         postData();
-    }
+    };
 
     return (
         <div>
             <Breadcrumb />
-            <CardForm handleSubmit={handleSubmit} formData={formData} handleChange={handleChange} deckId={deck.id}/>
+            <div className="container p-0 m-0">
+                <h1>Create Deck</h1>
+                <DeckForm handleSubmit={handleSubmit} formData={formData} handleChange={handleChange} linkNegate="/"/>
+            </div>
         </div>
     );
 }
