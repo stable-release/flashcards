@@ -23,7 +23,7 @@ function Create() {
     async function postData() {
         const data = formData;
         const deck = await createDeck(data);
-        history.push(`/decks/${deck.id}`);
+        history.push(`/`);
     }
 
     const handleSubmit = (event) => {
